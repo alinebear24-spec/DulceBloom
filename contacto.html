@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DulceBloom - Contacto</title>
+<link rel="stylesheet" href="miestilo.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+/* ===== Contacto ===== */
+section {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 40px auto;
+    gap: 30px;
+    padding: 20px;
+}
+
+article {
+    flex: 3;
+    background: #fff8f8;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+article h2, article h3 {
+    color: #d1416e;
+    margin-bottom: 15px;
+}
+
+article p {
+    margin-bottom: 15px;
+}
+
+article input, article textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+article textarea {
+    min-height: 120px;
+    resize: none;
+}
+
+article .boton {
+    display: inline-block;
+    background: linear-gradient(45deg, #ff8fab, #ffc7d0);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+article .boton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+aside {
+    flex: 1;
+    background: #fff0f5;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+aside h3 {
+    color: #d1416e;
+    margin-bottom: 10px;
+}
+
+aside p {
+    margin-bottom: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    section {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <h1>DulceBloom</h1>
+    <p>Contáctanos y crea tu regalo perfecto 💖</p>
+</header>
+
+<nav class="navbar">
+<span class="icon" onclick="toggleMenu()">☰</span>
+<ul class="menu" id="menu">
+<li><a href="index.html">INICIO</a></li>
+<li><a href="productos.html">CATÁLOGO</a></li>
+<li><a href="contacto.html">CONTACTO</a></li>
+</ul>
+</nav>
+
+<main class="contenedor-principal">
+<section>
+
+<article>
+<h2>Contáctanos</h2>
+<p>Estamos aquí para ayudarte a crear el regalo perfecto. Puedes comunicarte con nosotros a través de los siguientes medios:</p>
+
+<p><strong>📱 WhatsApp:</strong> 55-25-27-78-90</p>
+<p><strong>📘 Facebook:</strong> DulceBloom</p>
+<p><strong>✉️ Correo:</strong> dulcebloom@email.com</p>
+
+<h3>Envíanos un mensaje</h3>
+<p>Completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.</p>
+
+<form action="mailto:contacto@dulcebloom.com" method="post" enctype="text/plain">
+    <label for="nombre">Nombre completo:</label>
+    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+
+    <label for="correo">Correo electrónico:</label>
+    <input type="email" id="correo" name="correo" placeholder="Tu correo electrónico" required>
+
+    <label for="mensaje">Mensaje:</label>
+    <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+
+    <button type="submit" class="boton">Enviar mensaje</button>
+</form>
+
+<h3>Video de nuestros productos</h3>
+<p>Mira cómo son algunos de nuestros productos:</p>
+
+<!-- Video embebido -->
+<video width="100%" height="auto" controls>
+    <source src="video/Video promocional.mp4" type="video/mp4">
+    Tu navegador no soporta la reproducción de videos.
+</video>
+
+</article>
+
+<aside>
+<h3>Horario de atención</h3>
+<p>Lunes a sábado: 9:00 am - 6:00 pm</p>
+<p>Domingos: Cerrado</p>
+
+<h3>Ubicación</h3>
+<p>Chimalhuacán, Estado de México</p>
+
+<h3>Otros medios</h3>
+<p>También puedes escribirnos por WhatsApp o nuestras redes sociales para cualquier consulta rápida.</p>
+</aside>
+
+</section>
+</main>
+
+<footer class="pie">
+<p>© 2026 DulceBloom | Todos los derechos reservados</p>
+<p>Contacto: dulcebloom@email.com</p>
+</footer>
+
+<script>
+function toggleMenu() {
+document.getElementById("menu").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>

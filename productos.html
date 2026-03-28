@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DulceBloom - Catálogo</title>
+<link rel="stylesheet" href="miestilo.css">
+
+<style>
+.productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.producto {
+  position: relative;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.producto img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.producto p {
+  font-weight: bold;
+}
+
+.etiqueta {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #ff4d6d;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.nuevo {
+  background: #4caf50;
+}
+
+.comprar {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: #ff8fab;
+  color: white;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>DulceBloom</h1>
+<p>Catálogo de productos</p>
+</header>
+
+<nav class="navbar">
+<span class="icon" onclick="toggleMenu()">☰</span>
+<ul class="menu" id="menu">
+<li><a href="index.html">INICIO</a></li>
+<li><a href="productos.html">CATÁLOGO</a></li>
+<li><a href="contacto.html">CONTACTO</a></li>
+</ul>
+</nav>
+
+<section>
+<article>
+
+<h2>Nuestros productos</h2>
+
+<p>
+Descubre nuestra variedad de detalles dulces y regalos personalizados, diseñados para sorprender 
+en cualquier ocasión especial.
+</p>
+
+<div class="productos">
+
+<div class="producto">
+<span class="etiqueta">🔥 Más vendido</span>
+<img src="img/Strawberry with chocolate.jpg">
+<p>Fresas con chocolate</p>
+<small>Fresas frescas con chocolate.</small><br>
+<a href="pedido.html?producto=Fresas%20con%20chocolate" class="comprar">Comprar</a>
+</div>
+
+<div class="producto">
+<img src="img/Cupcakes decorados.jpg">
+<p>Cupcakes decorados</p>
+<small>Deliciosos cupcakes personalizados.</small><br>
+<a href="pedido.html?producto=Cupcakes%20decorados" class="comprar">Comprar</a>
+</div>
+
+<div class="producto">
+<img src="img/Arreglos florales.jpg">
+<p>Arreglos florales</p>
+<small>Flores con detalles dulces elegantes.</small><br>
+<a href="pedido.html?producto=Arreglos%20florales" class="comprar">Comprar</a>
+</div>
+
+<div class="producto">
+<span class="etiqueta nuevo">⭐ Nuevo</span>
+<img src="img/Pasteles personalizados.jpg">
+<p>Pasteles personalizados</p>
+<small>Diseñados especialmente para tu evento.</small><br>
+<a href="pedido.html?producto=Pasteles%20personalizados" class="comprar">Comprar</a>
+</div>
+
+<div class="producto">
+<img src="img/Galletas decoradas.jpg">
+<p>Galletas decoradas</p>
+<small>Galletas artesanales.</small><br>
+<a href="pedido.html?producto=Galletas%20decoradas" class="comprar">Comprar</a>
+</div>
+
+<div class="producto">
+<img src="img/Chocolates.jpg">
+<p>Caja de chocolates</p>
+<small>Selección ideal para regalo.</small><br>
+<a href="pedido.html?producto=Caja%20de%20chocolates" class="comprar">Comprar</a>
+</div>
+
+<div class="producto">
+<img src="img/Cajas sorpresa.jpg">
+<p>Cajas sorpresa</p>
+<small>Detalles personalizados.</small><br>
+<a href="pedido.html?producto=Cajas%20sorpresa" class="comprar">Comprar</a>
+</div>
+
+<div class="producto">
+<img src="img/Ramo dulce.jpg">
+<p>Ramos dulces</p>
+<small>Hechos con chocolates.</small><br>
+<a href="pedido.html?producto=Ramos%20dulces" class="comprar">Comprar</a>
+</div>
+
+<div class="producto">
+<img src="img/Macarrones.jpg">
+<p>Macarons</p>
+<small>Postre francés elegante.</small><br>
+<a href="pedido.html?producto=Macarons" class="comprar">Comprar</a>
+</div>
+
+</div>
+
+</article>
+
+<aside>
+<h3>Pedidos</h3>
+<p>Realiza tu pedido con anticipación.</p>
+<p>Entregas todos los días.</p>
+<p>Personalizamos tu pedido.</p>
+</aside>
+
+</section>
+
+<footer>
+<p>© 2026 DulceBloom | Todos los derechos reservados</p>
+<p>Contacto: dulcebloom@email.com</p>
+</footer>
+
+<script>
+function toggleMenu() {
+document.getElementById("menu").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>

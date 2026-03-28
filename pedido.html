@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DulceBloom - Pedido</title>
+<link rel="stylesheet" href="miestilo.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+.pedido-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 25px;
+    background: #fff8f8;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+.pedido-container h2 { color: #d1416e; margin-bottom: 20px; }
+.pedido-container label { display: block; margin: 15px 0 5px; font-weight: 600; }
+.pedido-container select, .pedido-container textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc; font-family: 'Poppins', sans-serif; }
+textarea { min-height: 120px; }
+#resumen { background: #ffeaea; padding: 15px; margin-top: 20px; border-radius: 10px; white-space: pre-line; }
+#enviarPedido {
+    display: inline-block; margin-top: 20px; padding: 12px 25px;
+    background: linear-gradient(45deg, #ff8fab, #ffc7d0); color: white; font-weight: 600;
+    border: none; border-radius: 25px; cursor: pointer; transition: 0.3s;
+}
+#enviarPedido:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+</style>
+</head>
+<body>
+
+<header class="header">
+    <h1>DulceBloom</h1>
+    <p>Realiza tu pedido personalizado 💖</p>
+</header>
+
+<nav class="navbar">
+    <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html">Catálogo</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+</nav>
+
+<main class="contenedor-principal">
+<section class="contenido pedido-container">
+    <h2>Formulario de Pedido</h2>
+
+    <label for="producto">Selecciona un producto:</label>
+    <select id="producto">
+        <option value="">-- Elige un producto --</option>
+        <option value="Fresas con chocolate">Fresas con chocolate</option>
+        <option value="Cupcakes decorados">Cupcakes decorados</option>
+        <option value="Arreglos florales">Arreglos florales</option>
+        <option value="Pasteles personalizados">Pasteles personalizados</option>
+        <option value="Galletas decoradas">Galletas decoradas</option>
+        <option value="Caja de chocolates">Caja de chocolates</option>
+        <option value="Cajas sorpresa">Cajas sorpresa</option>
+        <option value="Ramos dulces">Ramos dulces</option>
+        <option value="Macarons">Macarons</option>
+    </select>
+
+    <label for="toppings">Selecciona tus toppings / detalles:</label>
+    <select id="toppings" multiple></select>
+
+    <label for="combinacion">Proponer combinación personalizada:</label>
+    <textarea id="combinacion" placeholder="Escribe tu idea aquí..."></textarea>
+
+    <h3>Resumen de tu pedido:</h3>
+    <div id="resumen">Selecciona un producto y toppings para ver el resumen aquí.</div>
+
+    <button id="enviarPedido">Enviar pedido</button>
+</section>
+</main>
+
+<footer class="pie">
+    <p>&copy; 2026 DulceBloom | Todos los derechos reservados</p>
+    <p>Contacto: dulcebloom@email.com</p>
+</footer>
+
+<script>
+const productoSelect = document.getElementById('producto');
+const toppingsSelect = document.getElementById('toppings');
+const combinacionTextarea = document.getElementById('combinacion');
+const resumenDiv = document.getElementById('resumen');
+
+// Toppings super completos por producto
+const opcionesToppings = {
+    "Fresas con chocolate": ["Chocolate oscuro", "Chocolate blanco", "Chispas de colores", "Nueces", "Caramelo", "Miel", "Coco rallado", "Fresas extra", "Almendras", "Galleta triturada", "Chocolate con leche", "Chispas de chocolate blanco"],
+    "Cupcakes decorados": ["Crema de vainilla", "Chocolate", "Fresas", "Chispas", "Fondant", "Frutas frescas", "Caramelo líquido", "Merengue", "Confites", "Glaseado de colores", "Sprinkles gourmet", "Nueces picadas"],
+    "Arreglos florales": ["Flores frescas", "Chocolates pequeños", "Glitter comestible", "Velas mini", "Frutas pequeñas", "Tarjeta personalizada", "Mini peluches", "Ribbons decorativos", "Figuras comestibles"],
+    "Pasteles personalizados": ["Chocolate", "Frutas", "Crema chantilly", "Fondant", "Nueces", "Caramelo", "Merengue", "Glaseado de colores", "Sprinkles", "Frutas secas", "Trufas", "Decoración temática"],
+    "Galletas decoradas": ["Chocolate", "Azúcar glas", "Chispas de colores", "Fondant", "Caramelo", "Glaseado de sabores", "Frutas secas", "Chips de chocolate blanco", "Nueces picadas", "Confites decorativos", "Sprinkles"],
+    "Caja de chocolates": ["Chocolate negro", "Chocolate con leche", "Trufa", "Relleno de frutas", "Nueces", "Caramelo salado", "Praliné", "Chocolate con almendra", "Ganache", "Frutas deshidratadas"],
+    "Cajas sorpresa": ["Chocolates", "Dulces variados", "Mini peluches", "Globos pequeños", "Velas", "Tarjeta personalizada", "Confites variados", "Mini macarrons", "Frutitas de gominola", "Caramelos rellenos"],
+    "Ramos dulces": ["Chocolates", "Galletas decoradas", "Mini cupcakes", "Flores comestibles", "Frutas", "Caramelos envueltos", "Chicles decorativos", "Mini chocolates rellenos", "Fondant decorativo", "Mini macarrons"],
+    "Macarons": ["Chocolate", "Vainilla", "Frutas", "Caramelo", "Café", "Crema de limón", "Fresas frescas", "Chocolate con avellanas", "Dulce de leche", "Moka", "Pistache", "Frambuesa"]
+};
+
+function actualizarToppings() {
+    const producto = productoSelect.value;
+    toppingsSelect.innerHTML = "";
+    if(opcionesToppings[producto]){
+        opcionesToppings[producto].forEach(topping => {
+            const option = document.createElement('option');
+            option.value = topping;
+            option.text = topping;
+            toppingsSelect.appendChild(option);
+        });
+    }
+    actualizarResumen();
+}
+
+function actualizarResumen() {
+    const producto = productoSelect.value || "No seleccionado";
+    const toppings = Array.from(toppingsSelect.selectedOptions).map(o => o.value).join(', ') || "Ninguno";
+    const combinacion = combinacionTextarea.value.trim() || "Ninguna";
+    resumenDiv.textContent = `Producto: ${producto}\nToppings seleccionados: ${toppings}\nCombinación personalizada: ${combinacion}`;
+}
+
+productoSelect.addEventListener('change', actualizarToppings);
+toppingsSelect.addEventListener('change', actualizarResumen);
+combinacionTextarea.addEventListener('input', actualizarResumen);
+
+document.getElementById('enviarPedido').addEventListener('click', function() {
+    const producto = productoSelect.value;
+    if(!producto){
+        alert("Por favor selecciona un producto.");
+        return;
+    }
+    const toppings = Array.from(toppingsSelect.selectedOptions).map(o => o.value).join(', ') || "Ninguno";
+    const combinacion = combinacionTextarea.value.trim() || "Ninguna";
+    const resumen = `Producto: ${producto}\nToppings seleccionados: ${toppings}\nCombinación personalizada: ${combinacion}`;
+    window.location.href = `mailto:pedidos@dulcebloom.com?subject=Nuevo Pedido&body=${encodeURIComponent(resumen)}`;
+});
+</script>
+
+</body>
+</html>
